@@ -1,11 +1,20 @@
 module Ubi
   class Datum
-    def initialize(data)
+    attr_accessor :data, :words, :links
+
+    def initialize(data, words, links)
+      # binding.pry
       @data = data
+      @words = data.xpath(words).text
+      @links = data.xpath(links).map { |a| a.values.join(' ') }
     end
 
-    def read_chunk(regex)
-      data.match(regex)
+    def xpath(path)
+      data.xpath(path)
+    end
+
+    def read_div(div)
+      data.xpath("//#{div}").text
     end
 
     def read_list(list, args = [])

@@ -1,7 +1,10 @@
 module Ubi
   class Artifex
-    def initialize(thema)
-      @thema = thema
+    include Aranea
+    attr_accessor :thema
+
+    def initialize(query)
+      @thema = Thema.new(query)
       start_with_search
       social_search
       other_search

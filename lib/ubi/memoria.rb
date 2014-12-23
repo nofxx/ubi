@@ -18,6 +18,11 @@ module Ubi
           Ubi.memorias << base
         end
 
+        def parse(datum)
+          fail "Not implemented by #{self}" unless regex
+          datum.data.text.scan(regex)
+        end
+
         #
         # Human-readable name of the aranea
         #

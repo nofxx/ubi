@@ -3,8 +3,12 @@ module Ubi
     class Site < Base
 
       class << self
-        def name
-          'Website'
+        def parse(datum)
+          datum.links.join(' ').scan(regex)
+        end
+
+        def regex
+          /https?:\/\/((?:\w+[\.\/]?)+)(?:\/|\.)/
         end
 
         def key

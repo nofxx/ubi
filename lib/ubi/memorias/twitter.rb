@@ -2,8 +2,12 @@ module Ubi
   module Memoria
     class Twitter < Base
       class << self
-        def name
-          'Twitter'
+        def url
+          'http://twitter.com'
+        end
+
+        def regex
+          %r{#{url}/u/\w*}
         end
 
         def key

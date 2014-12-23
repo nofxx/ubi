@@ -1,6 +1,15 @@
+require 'pry'
 require 'thor'
+require 'net/http'
+require 'net/https'
+require 'uri'
+require 'open-uri'
+require 'json'
+require 'nokogiri'
 require 'active_model'
 require 'active_support'
+require 'active_support/core_ext/hash'
+require 'ubi/version'
 
 module Ubi
   cattr_accessor(:memorias) { [] }

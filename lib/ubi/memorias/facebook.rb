@@ -3,13 +3,17 @@ module Ubi
     class Facebook < Base
 
       class << self
-      def name
-        "Facebook"
-      end
+        def url
+          'facebook.com'
+        end
 
-      def key
-        :facebook
-      end
+        def regex
+          %r{https?://(?:\w+\.)*(#{url}/.*)}
+        end
+
+        def key
+          :facebook
+        end
       end
     end
   end

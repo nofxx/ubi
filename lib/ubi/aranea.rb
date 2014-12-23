@@ -2,34 +2,40 @@ module Ubi
   module Aranea
     class Base
 
+      HEADERS = { "User-Agent" => "Ubi v#{Ubi::VERSION}" }
+
       def initialize(thema)
         @thema = thema
       end
 
-      def data
-        Ubi::Datum.new(@data)
+      def query_url
+        self.class.url + query.to_query
       end
 
-      ##
+      def links
+        '//a'
+      end
+
+      def parser(chunk)
+        Nokogiri::HTML(chunk)
+      end
+
+      def datum
+        @datum ||= Ubi::Datum.new(parser(request), words, links)
+      end
+
+      #
       # Make an HTTP(S) request to a geocoding API and
       # return the response object.
       #
-      def make_request(query)
+      def request(opts = {})
         timeout(10) do
-          uri = URI.parse(query_url(query))
-          args = [uri.host, uri.port]
-          args = args.push(uri.user, uri.password) unless uri.user.nil? or uri.password.nil?
-          opts = {}
-          #opts[:use_ssl] = use_ssl?
-          http_client.start(*args, opts) do |client|
-            client.get(uri.request_uri, configuration.http_headers)
-          end
+          uri = URI.parse(query_url)
+          puts "#{self} working on `#{@thema}` (#{query_url}) #{opts}"
+          uri.open(HEADERS).read
         end
       end
 
-      def work(url)
-
-      end
 
       class << self
 
@@ -42,14 +48,14 @@ module Ubi
         # Human-readable name of the aranea
         #
         def name
-          fail
+          fail "Not implemented by #{self}"
         end
 
         #
         # Url to query
         #
         def url
-          fail
+          fail "Not implemented by #{self}"
         end
 
       end
