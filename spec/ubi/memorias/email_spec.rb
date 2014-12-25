@@ -26,8 +26,8 @@ describe Memoria::Email do
     ).each do |good_mail|
       it "should correctly parse '#{good_mail}'" do
         res = Memoria::Email.parse(good_mail)
-        expect(res.size).to eq(1)
         expect(res.first.to_s).to eq(good_mail)
+        expect(res.size).to eq(1)
       end
     end
   end

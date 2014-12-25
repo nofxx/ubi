@@ -3,9 +3,6 @@ module Ubi
     # A site, url and title?
     class Site < Base
       class << self
-        def parse(datum)
-          datum.links.join(' ').scan(regex)
-        end
 
         def regex
           %r{https?://((?:\w+[\./]?)+)(?:/|\.)}
