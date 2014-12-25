@@ -11,6 +11,11 @@ module Ubi
         @thema = thema
       end
 
+      # Format for #to_s
+      def format
+        value.downcase
+      end
+
       def to_s
         format
       end
