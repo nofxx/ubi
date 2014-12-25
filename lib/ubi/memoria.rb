@@ -18,9 +18,17 @@ module Ubi
           Ubi.memorias << base
         end
 
+        def extract_text(datum)
+          case datum
+          when String then datum
+          when Nokogiri::HTML then datum.data.text
+          else fail "Can't parse `#{datum.class}`"
+          end
+        end
+
         def parse(datum)
           fail "Not implemented by #{self}" unless regex
-          datum.data.text.scan(regex)
+          extract_text(datum).scan(regex)
         end
 
         #
