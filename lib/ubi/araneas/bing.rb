@@ -1,5 +1,6 @@
 module Ubi
   module Aranea
+    # URL finder aranea
     class Bing < Base
       #
       # query

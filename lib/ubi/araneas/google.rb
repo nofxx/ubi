@@ -1,7 +1,7 @@
 module Ubi
   module Aranea
-    class Google < Base #HTML
-
+    # URL finder aranea
+    class Google < Base # HTML
       def query
         { q: @thema.name }
       end

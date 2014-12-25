@@ -55,7 +55,6 @@ module Ubi
         def url
           fail "Not implemented by #{self}"
         end
-
       end
     end
   end

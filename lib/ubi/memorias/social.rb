@@ -1,7 +1,7 @@
 module Ubi
   module Memoria
+    # Social account
     class Social < Base
-
       class << self
         def apps
           {

@@ -20,7 +20,7 @@ module Ubi
 
     def read_list(list, args = [])
       s = struct_for(args)
-      data.xpath(list).map { |i| s.new(*i.xpath()) }
+      data.xpath(list).map { |i| s.new(*i.xpath) }
     end
 
     def read_table(table, args = [], subs = '')
