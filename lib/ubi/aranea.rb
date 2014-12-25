@@ -36,7 +36,6 @@ module Ubi
         end
       end
 
-
       class << self
 
         def inherited(base)
