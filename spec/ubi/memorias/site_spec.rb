@@ -8,7 +8,38 @@ describe Memoria::Site do
     it { is_expected.to be_an Array }
   end
 
-  describe 'valid' do
+  describe 'parsed' do
+    def parse(site)
+      Memoria::Site.parse(site).first.to_s
+    end
+
+    describe 'http' do
+      let(:parsed) { 'http://fubah.com' }
+
+      it { expect(parse('fubah.com')).to eq(parsed) }
+      it { expect(parse('@fubah.com')).to eq(parsed) }
+      it { expect(parse('fu@fubah.com')).to eq(parsed) }
+      it { expect(parse('http://fubah.com')).to eq(parsed) }
+      it { expect(parse('http://fubah.com/56')).to eq(parsed) }
+    end
+
+    describe 'https' do
+      let(:parsed) { 'https://fubah.com' }
+
+      it { expect(parse('https://fubah.com')).to eq(parsed) }
+      it { expect(parse('https://fubah.com?56')).to eq(parsed) }
+    end
+
+    describe 'subdomain' do
+      let(:parsed) { 'http://www.fubah.com' }
+
+      it { expect(parse('www.fubah.com')).to eq(parsed) }
+      it { expect(parse('http://www.fubah.com')).to eq(parsed) }
+      it { expect(parse('http://www.fubah.com?56')).to eq(parsed) }
+    end
+  end
+
+  describe 'valid http' do
     %w(
       oo.com
       oo.org
@@ -23,9 +54,12 @@ describe Memoria::Site do
       land.net.br
       dom.land.co.uk
       ad.dom.land.co.tk
+      http://foo.com
+      http://www.foo.com
     ).each do |good_site|
       it "should correctly parse '#{good_site}'" do
         res = Memoria::Site.parse(good_site)
+        good_site = "http://#{good_site}" if good_site !~ /http/
         expect(res.first.to_s).to eq(good_site)
         expect(res.size).to eq(1)
       end
@@ -36,10 +70,7 @@ describe Memoria::Site do
     %w(
       @foo
       foo@foo
-      @foo.org
       zumbi@.com
-      foo@@foo.com
-      zum.@good.com
       @11 53 2355
       @11532355
     ).each do |bad_site|
