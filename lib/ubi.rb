@@ -11,6 +11,7 @@ require 'active_support'
 require 'active_support/core_ext/hash'
 require 'ubi/version'
 
+# Ubiquous getters
 module Ubi
   cattr_accessor(:memorias) { [] }
   cattr_accessor(:araneas) { [] }
@@ -22,7 +23,7 @@ require 'ubi/memoria'
 require 'ubi/aranea'
 require 'ubi/artifex'
 
-%w{ memorias araneas }.each do |ns|
+%w( memorias araneas ).each do |ns|
   Dir["#{File.dirname(__FILE__)}/ubi/#{ns}/**.rb"].sort.each do |lib|
     require lib
   end

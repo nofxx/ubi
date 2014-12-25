@@ -23,7 +23,8 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'thor'
   s.add_dependency 'paint'
-  s.add_dependency 'boris'
+  s.add_dependency 'polipus'
+  s.add_dependency 'nokogiri'
   s.add_dependency 'activemodel'
   s.add_dependency 'activesupport'
 end

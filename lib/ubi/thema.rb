@@ -16,6 +16,10 @@ module Ubi
       reduce_names
     end
 
+    def url
+      memorias.site
+    end
+
     def reduce_names
       @ascii = name.mb_chars.downcase
       @downcase = name.mb_chars.downcase
@@ -43,8 +47,9 @@ module Ubi
     def try_aranea(a)
       a = a.new(self)
       Ubi.memorias.each do |m|
-        puts "Trying to find #{m} in #{a.class}"
-        p @cache[m] = m.parse(a.datum)
+        puts Paint["Trying to find #{m} in #{a.class}", :green]
+        @cache[m] = matches = m.parse(a.datum)
+        puts matches if matches && !matches.empty?
       end
     end
 
