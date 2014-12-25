@@ -2,7 +2,7 @@ module Ubi
   module Memoria
     # An Electronic Mail
     class Email < Base
-
+      #
       #
       # Class methods
       #
