@@ -5,6 +5,7 @@ require 'net/https'
 require 'uri'
 require 'open-uri'
 require 'json'
+require 'phonie'
 require 'nokogiri'
 require 'active_model'
 require 'active_support'
@@ -15,6 +16,9 @@ require 'ubi/version'
 module Ubi
   cattr_accessor(:memorias) { [] }
   cattr_accessor(:araneas) { [] }
+
+  Phonie.configuration.default_country_code = '55'
+  Phonie.configuration.n1_length = 4
 end
 
 require 'ubi/thema'
