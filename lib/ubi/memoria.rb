@@ -12,7 +12,7 @@ module Ubi
       end
 
       def to_s
-        value
+        format
       end
 
       class << self

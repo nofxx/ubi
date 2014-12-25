@@ -2,6 +2,11 @@ module Ubi
   module Memoria
     # An Electronic Mail
     class Email < Base
+      # Format for #to_s
+      def format
+        value.downcase
+      end
+
       #
       # Class methods
       #

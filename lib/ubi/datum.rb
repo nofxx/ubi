@@ -26,8 +26,12 @@ module Ubi
     def read_table(table, args = [], subs = '')
       s = struct_for(*args)
       data.xpath(table).map do |r|
-        s.new(*r.xpath('td/text()').map { |t| t.to_s.gsub(subs, '').strip.chomp })
+        s.new(*r.xpath('td/text()').map { |t| normalize(t, subs) })
       end
+    end
+
+    def normalize(txt, subs = '')
+      txt.to_s.gsub(subs, '').strip.chomp
     end
 
     private
