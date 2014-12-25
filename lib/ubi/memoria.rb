@@ -1,12 +1,18 @@
 module Ubi
   module Memoria
+    # Memoria Base
     class Base
       include ActiveModel::Validations
+      attr_accessor :value
 
-      def initialize(value, aranea, thema)
+      def initialize(value, aranea = nil, thema = nil)
         @value = value
         @aranea = aranea
         @thema = thema
+      end
+
+      def to_s
+        value
       end
 
       class << self
@@ -28,7 +34,7 @@ module Ubi
 
         def parse(datum)
           fail "Not implemented by #{self}" unless regex
-          extract_text(datum).scan(regex)
+          extract_text(datum).scan(regex).map { |r| new(r) }
         end
 
         #
@@ -42,9 +48,8 @@ module Ubi
         # Human-readable name of the aranea
         #
         def name
-          self.to_s.split('::').last
+          to_s.split('::').last
         end
-
       end
     end
   end

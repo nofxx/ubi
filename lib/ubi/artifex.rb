@@ -1,4 +1,5 @@
 module Ubi
+  # Artifex: I work!
   class Artifex
     include Aranea
     attr_accessor :thema
@@ -23,6 +24,5 @@ module Ubi
     end
 
     delegate :spec, to: :thema
-
   end
 end

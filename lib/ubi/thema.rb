@@ -53,10 +53,8 @@ module Ubi
       end
     end
 
-
     def to_s
       name
     end
-
   end
 end

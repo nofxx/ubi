@@ -1,7 +1,7 @@
 module Ubi
   module Memoria
+    # Whoami
     class Who < Base
-
       class << self
         def apps
           {

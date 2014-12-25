@@ -1,8 +1,8 @@
 module Ubi
   module Aranea
+    # Base for araneas (spiders)
     class Base
-
-      HEADERS = { "User-Agent" => "Ubi v#{Ubi::VERSION}" }
+      HEADERS = { 'User-Agent' => "Ubi v#{Ubi::VERSION}" }
 
       def initialize(thema)
         @thema = thema
@@ -37,7 +37,6 @@ module Ubi
       end
 
       class << self
-
         def inherited(base)
           puts "Using aranea #{base}"
           Ubi.araneas << base

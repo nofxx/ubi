@@ -3,6 +3,9 @@ module Ubi
     class Email < Base
       class << self
 
+        #
+        # Email regex
+        #
         def regex
           /[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
         end

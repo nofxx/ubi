@@ -1,4 +1,5 @@
 module Ubi
+  # Suppose to be html reader
   class Datum
     attr_accessor :data, :words, :links
 
@@ -31,7 +32,7 @@ module Ubi
 
     private
 
-    def struct_for *keys
+    def struct_for(*keys)
       @struct = Struct.new(*keys)
     end
   end
