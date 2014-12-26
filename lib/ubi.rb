@@ -21,10 +21,8 @@ module Ubi
   Phonie.configuration.n1_length = 4
 end
 
-require 'ubi/thema'
-require 'ubi/datum'
-require 'ubi/memoria'
 require 'ubi/aranea'
+require 'ubi/memoria'
 require 'ubi/artifex'
 
 %w( memorias araneas ).each do |ns|
@@ -32,3 +30,7 @@ require 'ubi/artifex'
     require lib
   end
 end
+
+# Loads after all
+require 'ubi/datum'
+require 'ubi/thema'

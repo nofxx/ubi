@@ -23,12 +23,12 @@ module Ubi
     def reduce_names
       @ascii = name.mb_chars.downcase
       @downcase = name.mb_chars.downcase
-      @clean = @downcase.gsub(/\W/, '')
+      @clean = @downcase.gsub(/\W/, ' ')
     end
 
     Ubi.memorias.each do |memoria|
-      define_method memoria.key do
-        memoria
+      define_method memoria.plural do
+        instance_variable_set(memoria.plural, [])
       end
     end
 

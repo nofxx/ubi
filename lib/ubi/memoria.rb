@@ -28,7 +28,6 @@ module Ubi
           fail "Already defined #{base.key}" if Ubi.memorias.include?(base)
           puts "With memoria #{base}"
           Ubi.memorias << base
-          p Ubi.memorias
         end
 
         def extract_text(datum)
