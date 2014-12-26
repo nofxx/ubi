@@ -16,10 +16,6 @@ module Ubi
         def regex
           /(?:\+?\d{1,3}\W)?#{SPLIT}\(?\d{2,3}\)?#{SPLIT}\d{3,5}#{SPLIT}\d{4,5}/
         end
-
-        def key
-          :phone
-        end
       end
     end
   end

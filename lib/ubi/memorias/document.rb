@@ -44,10 +44,6 @@ module Ubi
         def regex(location = :br)
           regexes[location]
         end
-
-        def key
-          :email
-        end
       end
     end
   end

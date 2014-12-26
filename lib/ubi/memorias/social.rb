@@ -14,10 +14,6 @@ module Ubi
         def regex
           %r{https?://(?:\w+\.)*(#{url}/.*)}
         end
-
-        def key
-          :social
-        end
       end
     end
   end

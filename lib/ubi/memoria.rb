@@ -25,8 +25,10 @@ module Ubi
         # Account for memorias
         #
         def inherited(base)
+          fail "Already defined #{base.key}" if Ubi.memorias.include?(base)
           puts "With memoria #{base}"
           Ubi.memorias << base
+          p Ubi.memorias
         end
 
         def extract_text(datum)
@@ -46,7 +48,8 @@ module Ubi
         # Human-readable name of the aranea
         #
         def key
-          fail "Not implemented by #{self}"
+          @key ||= self.to_s.split('::').last.downcase.to_sym
+          # fail "Not implemented by #{self}"
         end
 
         #
@@ -54,6 +57,14 @@ module Ubi
         #
         def name
           to_s.split('::').last
+        end
+
+        def plural
+          "#{key}s"
+        end
+
+        def ==(other)
+          key == other.key
         end
       end
     end
