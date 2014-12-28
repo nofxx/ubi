@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Thema do
-
   it 'should have a name' do
     expect(Thema.new('Hard Rock').name).to eq('Hard Rock')
   end
@@ -14,5 +13,13 @@ describe Thema do
     expect(Thema.new('Foo')).to respond_to(:emails)
   end
 
+  it 'should access sites by type' do
+    expect(Thema.new('Foo')).to respond_to(:sites)
+  end
 
+  it 'should accept a site' do
+    th = Thema.new('Ruby')
+    th.sites << Memoria::Site.new('http://ruby-lang.org')
+    expect(th.sites.size).to eq(1)
+  end
 end

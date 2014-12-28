@@ -4,6 +4,8 @@ module Ubi
   # Base for araneas (spiders)
   class Aranea
     HEADERS = { 'User-Agent' => "Ubi v#{Ubi::VERSION}" }
+    attr_accessor :thema
+
     delegate :name, to: :thema
     delegate :url, to: :thema
 

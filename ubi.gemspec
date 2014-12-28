@@ -23,10 +23,14 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'thor', '~> 0.19.1'
   s.add_dependency 'paint', '~> 0.9.0'
-  s.add_dependency 'phonie', '~> 0.4.0'
+  s.add_dependency 'phonie', '~> 3.1.0'
   s.add_dependency 'polipus', '~> 0.4.0'
   s.add_dependency 'nokogiri', '~> 1.6.0'
   s.add_dependency 'geopolitical'
+
+  s.add_development_dependency 'vcr'
+  s.add_development_dependency 'rspec'
+  s.add_development_dependency 'webmock'
   # s.add_dependency 'activemodel'
   # s.add_dependency 'activesupport'
 end
