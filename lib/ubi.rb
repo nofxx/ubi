@@ -23,14 +23,15 @@ end
 
 require 'ubi/aranea'
 require 'ubi/memoria'
-require 'ubi/artifex'
+require 'ubi/consultor'
 
-%w( memorias araneas ).each do |ns|
+%w( memorias consultores ).each do |ns|
   Dir["#{File.dirname(__FILE__)}/ubi/#{ns}/**.rb"].sort.each do |lib|
     require lib
   end
 end
 
 # Loads after all
+require 'ubi/artifex'
 require 'ubi/datum'
 require 'ubi/thema'

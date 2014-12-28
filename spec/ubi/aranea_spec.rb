@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Aranea::Site do
+describe Aranea do
 
   it 'should crawl a domain' do
 

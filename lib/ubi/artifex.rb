@@ -1,7 +1,7 @@
 module Ubi
   # Artifex: I work!
   class Artifex
-    include Aranea
+    include Consultor
     attr_accessor :thema
 
     def initialize(query)
