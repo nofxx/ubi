@@ -1,5 +1,5 @@
 module Ubi
-  module Aranea
+  module Consultor
     class Wikipedia < Base
     end
   end

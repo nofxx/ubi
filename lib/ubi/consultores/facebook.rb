@@ -1,5 +1,5 @@
 module Ubi
-  module Aranea
+  module Consultor
     class Facebook < Base
     end
   end

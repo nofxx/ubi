@@ -1,15 +1,15 @@
 module Ubi
-  module Aranea
-    # URL finder aranea
-    class Yahoo < Base
+  module Consultor
+    # URL finder consultor
+    class Bing < Base
       #
       # query
       def query
-        { p: @thema.name, hspart: 'ubi' }
+        { q: @thema.name, pc: 'ubi' }
       end
 
       def links
-        '//a[not (contains(@href,"yahoo"))]'
+        '//a[not (contains(@href,"bing"))]'
       end
 
       def words
@@ -18,7 +18,7 @@ module Ubi
 
       class << self
         def url
-          'https://search.yahoo.com/yhs/search?'
+          'https://bing.com/search?'
         end
       end
     end

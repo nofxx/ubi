@@ -1,6 +1,6 @@
 module Ubi
-  module Aranea
-    # URL finder aranea
+  module Consultor
+    # URL finder consultor
     class Google < Base # HTML
       def query
         { q: @thema.name }
