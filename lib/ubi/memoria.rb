@@ -47,7 +47,7 @@ module Ubi
         # Human-readable name of the aranea
         #
         def key
-          @key ||= self.to_s.split('::').last.downcase.to_sym
+          @key ||= to_s.split('::').last.downcase.to_sym
           # fail "Not implemented by #{self}"
         end
 
