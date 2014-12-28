@@ -21,11 +21,12 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.require_paths = ['lib']
 
-  s.add_dependency 'thor'
-  s.add_dependency 'paint'
-  s.add_dependency 'phonie'
-  s.add_dependency 'polipus'
-  s.add_dependency 'nokogiri'
-  s.add_dependency 'activemodel'
-  s.add_dependency 'activesupport'
+  s.add_dependency 'thor', '~> 0.19.1'
+  s.add_dependency 'paint', '~> 0.9.0'
+  s.add_dependency 'phonie', '~> 0.4.0'
+  s.add_dependency 'polipus', '~> 0.4.0'
+  s.add_dependency 'nokogiri', '~> 1.6.0'
+  s.add_dependency 'geopolitical'
+  # s.add_dependency 'activemodel'
+  # s.add_dependency 'activesupport'
 end
