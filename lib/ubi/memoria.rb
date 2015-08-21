@@ -48,9 +48,10 @@ module Ubi
         # Scan for memoria regex and map to new memoria if found
         #
         # @returns Array [Memoria, Memoria...]
-        def parse(datum)
-          fail "Not implemented by #{self}" unless regex
-          extract_text(datum).scan(regex).map { |r| new(r.first) }
+        def parse(datum, hint = :br)
+          fail "Not implemented by #{self}" unless defined?(:regex)
+          extract_text(datum).scan(regex(hint))
+            .map { |r| new(r.first, hint) }
         end
 
         #

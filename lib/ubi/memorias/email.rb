@@ -10,7 +10,7 @@ module Ubi
         #
         # Email regex
         #
-        def regex
+        def regex(hint = nil)
           %r{([a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)} # rubocop:disable Metrics/LineLength
         end
       end

@@ -79,8 +79,8 @@ module Ubi
           }
         end
 
-        def regex
-          /((?:#{REGEXES[:br][:prefix].join('|')}).*)/i
+        def regex(hint)
+          /((?:#{REGEXES[hint][:prefix].join('|')}).*)/i
         end
 
         def plural

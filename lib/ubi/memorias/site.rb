@@ -11,7 +11,7 @@ module Ubi
       class << self
         #
         # Regex only for *.tld
-        def regex
+        def regex(hint = nil)
           # %r{https?://((?:\w+[\./]?)+)(?:/|\.)}
           # (?:\??)[a-zA-Z0-9\-\._\?\,\'\/\\\+&%\$#\=~]+
           # %r{(?:https?\://)?(?:www\.)?[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}}
