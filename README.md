@@ -1,30 +1,34 @@
-                                                          _      _
-                                                   /\ /\ | |__  (_)
-                                                  / / \ \| '_ \ | |
-                                                  \ \_/ /| |_) || |
-                                                   \___/ |_.__/ |_|
-
-Ubi finds information on subject webpages.
+                                              _      _
+                                       /\ /\ | |__  (_)
+                                      / / \ \| '_ \ | |
+                                      \ \_/ /| |_) || |
+                                       \___/ |_.__/ |_|
 
 
-Thema -> Subject/matter
------
-
-Name
-
-Memoria -> Attribute/trait/memory
--------
-
-[URLs]
-[Emails]
-[Phones]
-[Social]
-[Documents]
+Ubi finds information in the subject's webpage(s).
+Forager.
 
 
+## Thema -> Subject/matter
 
-Aranea -> Spider/Crawler
-------
+- Name
+- Email
+- URL
+
+
+## Memoria -> Attribute/trait/memory
+
+- URLs
+- Emails
+- Phones
+- Social
+- Files
+- Documents
+- Address
+- Logo/Images
+
+
+## Aranea -> Spider/Crawler
 
 Search
 API
@@ -32,5 +36,19 @@ API
 Others
 
 
+## Use
+
+```
 Ubi::Thema.new('A Company on City').urls
 Ubi::Thema.new('A Company on City', 'company.com').phones
+```
+
+### Memorias Directly
+
+```
+Ubi::Memoria::Email.parse('A text with some valid@emails.com')
+Ubi::Memoria::Phone.parse('A text with some +55-5555-5555')
+Ubi::Memoria::Site.parse('A text with some http://urls.com')
+```
+
+##### Keep crawling
