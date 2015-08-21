@@ -13,7 +13,7 @@ module Ubi
 
     def start_with_search
       [Google, Yahoo, Bing, DuckDuckGo].each do |s|
-        @thema.try_aranea(s)
+        @thema.try_consultor(s)
       end
     end
 

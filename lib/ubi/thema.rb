@@ -7,17 +7,18 @@ module Ubi
     include ActiveModel::Serialization
     include ActiveModel::Dirty
 
-    attr_accessor :name, :ascii, :clean
+    attr_accessor :name, :urls, :opts, :ascii, :clean
 
-    def initialize(name, type = :omni, opts = {})
+    def initialize(name, urls = [], opts = {})
       @name = name
-      @type = type
+      @urls = urls
+      @opts = opts
       @cache = Ubi.memorias.reduce({}) { |a, e| a.merge(e => opts[e]) }
       reduce_names
     end
 
-    def url
-      memorias.site
+    def araneas
+      @araneas ||= urls.map { |u| Aranea.new(self, u) }
     end
 
     def reduce_names
@@ -28,7 +29,8 @@ module Ubi
 
     Ubi.memorias.each do |memoria|
       define_method memoria.plural do
-        instance_variable_set(memoria.plural, [])
+        instance_variable_get('@' + memoria.plural) ||
+          instance_variable_set('@' + memoria.plural, [])
       end
     end
 
@@ -44,7 +46,7 @@ module Ubi
       end
     end
 
-    def try_aranea(a)
+    def try_consultor(a)
       a = a.new(self)
       Ubi.memorias.each do |m|
         puts Paint["Trying to find #{m} in #{a.class}", :green]
