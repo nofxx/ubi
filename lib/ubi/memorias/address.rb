@@ -1,6 +1,15 @@
 module Ubi
   module Memoria
-    # An adress in this world
+    # An address in this world
+    #
+    # Ignorace < Bliss
+    #
+    # Yeah, this needs lots of work.
+    # Geonames in memory country with zip/cities and regions,
+    # and some neural thing. And geocode to use openstreet or else.
+    #
+    # Don't hesitate to improve your AI skills here.
+    #
     class Address < Base
       DIVIDERS = /[,\-\|\/]/
       SPLIT = /(?<=\D)#{DIVIDERS}|#{DIVIDERS}(?=\D)/
