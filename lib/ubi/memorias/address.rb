@@ -6,10 +6,10 @@ module Ubi
       SPLIT = /(?<=\D)#{DIVIDERS}|#{DIVIDERS}(?=\D)/
       REGEXES = {
         br: {
-          prefix: %w( r rua av avenida pç pça praça pc pca praca tv travessa est estrada rod rodovia ),
+          prefix: %w( r rua av avenida pc pca praça pc pca praca tv travessa est estrada rod rodovia ),
           number: %w( n no nº num numero km ),
-          ext: %w( comp obs ap apto apart apartamento andar  ),
-          zip: /\d{5}[-]\d{3}/
+          ext: %w( comp obs ap apto apart apartamento andar ),
+          zip: /\d{5}\s?[-]\s?\d{3}/
         },
         us: {
           prefix: %w( st street av avenue road ),
@@ -18,19 +18,24 @@ module Ubi
       }
 
       attr_accessor :name, :parts, :words, :zip, :place, :number,
-                    :city, :region, :nation, :extra
+                    :city, :region, :nation, :extra, :clean
       #
       #
       # Init, remove non word chars
       #
-      def initialize(val, _location = :br)
-        @chunk = Address.sanitize(val)
+      def parser
+        @clean = Address.sanitize(chunk)
         # @zip = chunk.match(REGEXES[location][:zip])
-        # @region = chunk.match(/\W([A-Z]{2})\W/)[1]
-        # @number = chunk.match(/\w*\d+\w*/)
 
-        @parts = chunk.split(SPLIT).map { |v| v.strip.chomp }
+        @parts = clean.split(SPLIT).map { |v| v.strip.chomp }
         @words = parts.map { |pt| pt.split(/\s+/) }
+        @zip = chunk.scan(REGEXES[:br][:zip]).first
+        if zip
+          @zip = zip.gsub(/\D/, '').sub(*Address.zip_format[:br])
+          clean.slice!(zip)
+        end
+        @region = clean.scan(/\W([A-Z]{2})\W/).first.first
+        @number = clean.scan(/\d+/).join(' ')
       end
 
       def format(location = :br)
@@ -45,7 +50,8 @@ module Ubi
         # "\n" -> "-"
         # " -" -> "-"
         #
-        def sanitize(v)
+        def sanitize(txt)
+          v = ActiveSupport::Inflector.transliterate(txt)
           v.gsub(/\s+/, ' ').gsub(/\\n/, '-')
             .gsub(/\s?(#{DIVIDERS})\s?/, '\1')
         end
@@ -55,6 +61,12 @@ module Ubi
             # br: '%a, %n - %c %z %r',
             # br: '%a, %n - %c %z %r',
             br: '%a, %n - %c %z %r'
+          }
+        end
+
+        def zip_format
+          {
+            br: [/(\d{5})(\d{3})/, '\1-\2']
           }
         end
 

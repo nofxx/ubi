@@ -17,8 +17,8 @@ describe Memoria::Site do
       let(:parsed) { 'http://fubah.com' }
 
       it { expect(parse('fubah.com')).to eq(parsed) }
-      it { expect(parse('@fubah.com')).to eq('http://@fubah.com') }
-      it { expect(parse('fu@fubah.com')).to eq('http://fu@fubah.com') }
+      it { expect(parse('@fubah.com')).to eq(parsed) } # 'http://@fubah.com') }
+      it { expect(parse('fu@fubah.com')).to eq(parsed) } # 'http://fu@fubah.com') }
       it { expect(parse('http://fubah.com')).to eq(parsed) }
       it { expect(parse('http://fubah.com/56')).to eq(parsed + '/56') }
     end

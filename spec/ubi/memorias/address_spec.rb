@@ -2,13 +2,13 @@ require 'spec_helper'
 
 describe Memoria::Address do
   [
-    'R Bahia,55 - Una/BR - 12345-678',
-    'R Bahia,55 - Una/BR - 12345- 678',
-    'R Bahia, 55 - Una/BR - 12345-678',
-    'R Bahia, 55  - Una/BR - 12345-678',
-    'R Bahia, 55 /  Una/BR - 12345-678',
-    'R Bahia, 55 \n  Una/BR \n 12345-678',
-    'R Bahia, 55,   Una/BR - 12345-678'
+    'R Bahia,55 - Una/BA - 12345-678',
+    'R Bahia,55 - Una/BA - 12345- 678',
+    'R Bahia, 55 - Una/BA - 12345-678',
+    'R Bahia, 55  - Una/BA - 12345-678',
+    'R Bahia, 55 /  Una/BA - 12345-678',
+    'R Bahia, 55 \n  Una/BA \n 12345-678',
+    'R Bahia, 55,   Una/BA - 12345-678'
   ].each do |chunk|
     describe "simple delimited `#{chunk}`" do
       subject { Memoria::Address.parse(chunk) }
@@ -22,14 +22,14 @@ describe Memoria::Address do
 
         it { expect(addr.zip.to_s).to eq('12345-678') }
         it { expect(addr.number.to_s).to eq('55') }
-        it { expect(addr.region.to_s).to eq('BR') }
+        it { expect(addr.region.to_s).to eq('BA') }
 
         it 'should split into parts' do
-          expect(addr.parts).to eq(['R Bahia', '55', 'Una', 'BR', '12345-678'])
+          expect(addr.parts).to eq(['R Bahia', '55', 'Una', 'BA', '12345-678'])
         end
 
         it 'should split into words' do
-          expect(addr.words).to eq([%w(R Bahia), ['55'], ['Una'], ['BR'], ['12345-678']])
+          expect(addr.words).to eq([%w(R Bahia), ['55'], ['Una'], ['BA'], ['12345-678']])
         end
       end
     end
