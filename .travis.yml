@@ -1,0 +1,13 @@
+language: ruby
+env: CI="travis"
+rvm:
+  - 2.2
+  - rbx-2
+  - jruby-head
+  - ruby-head
+
+matrix:
+  allow_failures:
+    - rvm: jruby-head
+
+sudo: false
