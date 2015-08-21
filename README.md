@@ -6,17 +6,17 @@
 
 
 Ubi finds information in the subject's webpage(s).
-Forager.
+A forager.
 
 
-## Thema -> Subject/matter
+## Thema -> Subject/Matter
 
 - Name
 - Email
 - URL
 
 
-## Memoria -> Attribute/trait/memory
+## Memoria -> Attribute/Trait/Memory
 
 - URLs
 - Emails
@@ -52,3 +52,6 @@ Ubi::Memoria::Site.parse('A text with some http://urls.com')
 ```
 
 ##### Keep crawling
+
+> Ubi, and the class names are latin, in case you're curious.
+> Yeah, apparently I got plenty of free time.
