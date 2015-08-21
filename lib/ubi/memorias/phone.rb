@@ -2,19 +2,30 @@ module Ubi
   module Memoria
     # A Phone! mobile? landline? who is calling???
     class Phone < Base
-      SPLIT = '[\._\-/\s]*'
+      attr_reader :number, :chunk
 
-      def initialize(value)
-        @value = Phonie::Phone.parse(value.gsub(/\D/, ''))
+      def initialize(chunk, hint = nil)
+        @hint = hint
+        @chunk = chunk
+        parse_number
+      end
+
+      def parse_number
+        @number = Phonelib.parse(chunk.gsub(/\D/, ''), @hint)
       end
 
       def to_s
-        value && value.format(:us)
+        number && number.national
+      end
+
+      def rfc
+        number && number.international
       end
 
       class << self
+        # http://rubular.com/r/tEHB6KcZzk
         def regex
-          /(?:\+?\d{1,3}\W)?#{SPLIT}\(?\d{2,3}\)?#{SPLIT}\d{3,5}#{SPLIT}\d{4,5}/
+          /(?:^|\s)((?:\+\(?\d{1,3}\W)?[\._\-\/\s]*\(?\s*?\d{2,3}\s*?\)?[\._\-\/\s]*\d{3,5}[\._\-\/\s]*\d{4,5})(?:\s|$)/
         end
       end
     end

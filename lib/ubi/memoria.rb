@@ -40,7 +40,7 @@ module Ubi
 
         def parse(datum)
           fail "Not implemented by #{self}" unless regex
-          extract_text(datum).scan(regex).map { |r| new(r) }
+          extract_text(datum).scan(regex).map { |r| new(r.first) }
         end
 
         #
@@ -63,6 +63,7 @@ module Ubi
         end
 
         def ==(other)
+          return unless other.respond_to?(:key)
           key == other.key
         end
       end

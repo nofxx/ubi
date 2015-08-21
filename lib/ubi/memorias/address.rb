@@ -23,11 +23,11 @@ module Ubi
       #
       # Init, remove non word chars
       #
-      def initialize(val, location = :br)
+      def initialize(val, _location = :br)
         @value = Address.sanitize(val)
-        @zip = value.match(REGEXES[location][:zip])
-        @region = value.match(/\W([A-Z]{2})\W/)[1]
-        @number = value.match(/\w*\d+\w*/)
+        # @zip = value.match(REGEXES[location][:zip])
+        # @region = value.match(/\W([A-Z]{2})\W/)[1]
+        # @number = value.match(/\w*\d+\w*/)
 
         @parts = value.split(SPLIT).map { |v| v.strip.chomp }
         @words = parts.map { |pt| pt.split(/\s+/) }
@@ -52,14 +52,14 @@ module Ubi
 
         def formats
           {
-            br: '%a, %n - %c %z %r',
-            br: '%a, %n - %c %z %r',
+            # br: '%a, %n - %c %z %r',
+            # br: '%a, %n - %c %z %r',
             br: '%a, %n - %c %z %r'
           }
         end
 
         def regex
-          /(?:#{REGEXES[:br][:prefix].join('|')}).*/i
+          /((?:#{REGEXES[:br][:prefix].join('|')}).*)/i
         end
 
         def plural
