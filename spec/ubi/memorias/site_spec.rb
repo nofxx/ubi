@@ -17,17 +17,17 @@ describe Memoria::Site do
       let(:parsed) { 'http://fubah.com' }
 
       it { expect(parse('fubah.com')).to eq(parsed) }
-      it { expect(parse('@fubah.com')).to eq(parsed) }
-      it { expect(parse('fu@fubah.com')).to eq(parsed) }
+      it { expect(parse('@fubah.com')).to eq('http://@fubah.com') }
+      it { expect(parse('fu@fubah.com')).to eq('http://fu@fubah.com') }
       it { expect(parse('http://fubah.com')).to eq(parsed) }
-      it { expect(parse('http://fubah.com/56')).to eq(parsed) }
+      it { expect(parse('http://fubah.com/56')).to eq(parsed + '/56') }
     end
 
     describe 'https' do
       let(:parsed) { 'https://fubah.com' }
 
       it { expect(parse('https://fubah.com')).to eq(parsed) }
-      it { expect(parse('https://fubah.com?56')).to eq(parsed) }
+      it { expect(parse('https://fubah.com?56')).to eq(parsed + '?56') }
     end
 
     describe 'subdomain' do
@@ -35,7 +35,7 @@ describe Memoria::Site do
 
       it { expect(parse('www.fubah.com')).to eq(parsed) }
       it { expect(parse('http://www.fubah.com')).to eq(parsed) }
-      it { expect(parse('http://www.fubah.com?56')).to eq(parsed) }
+      it { expect(parse('http://www.fubah.com/f?56')).to eq(parsed + '/f?56') }
     end
   end
 

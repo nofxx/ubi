@@ -5,6 +5,14 @@ describe Thema do
     expect(Thema.new('Hard Rock').name).to eq('Hard Rock')
   end
 
+  it 'should accept urls too' do
+    expect(Thema.new('Hard Rock', ['hr.com']).urls).to include('hr.com')
+  end
+
+  it 'should convert urls to aranea' do
+    expect(Thema.new('HR', ['hr.com']).araneas.first).to be_a(Aranea)
+  end
+
   it 'should have many memorias' do
     expect(Thema.new('Foo').memorias).to be_an(Array)
   end

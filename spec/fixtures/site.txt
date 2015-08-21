@@ -1,0 +1,21 @@
+Welcome to RegExr 0.3b, an intuitive tool for learning, writing, and testing Regular Expressions. Key features include:
+
+http://jdjd:senha@notabe.com
+http://google.com/
+irc://irc.freenode.net/git
+https://google.com/, http://google.com/.
+http://en.wikipedia.org/wiki/Git_(software)
+Rubular (http://rubular.com/)
+Another [http://rock.com]
+and just for fun. {http://rocker.com}
+googls.com
+fof~fs.com?rock=jdjd&jba=jdj
+(fofjs.com)
+[jobsla.com]
+( ocu.dabund)
+(jdjd.com )
+
+* search Community expressions and add your own
+* create Share Links to send your expressions to co-workers or link to them on Twitter or your blog [ex. http://RegExr.com?2rjl6 http://t.co/zhdlqoekdDF
+
+Built by gskinner.com with Spelling Plus Library for text highlighting [gskinner.com/products/spl].

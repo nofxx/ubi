@@ -48,4 +48,12 @@ describe Memoria::Email do
       end
     end
   end
+
+  describe 'parsed emails txt' do
+    load_fixture('email.txt').each_line do |l|
+      it "Should parse email #{l}" do
+        expect(Memoria::Email.parse(l).first.to_s).to eq('johh@gmail.com')
+      end
+    end
+  end
 end

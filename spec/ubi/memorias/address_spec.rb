@@ -29,7 +29,7 @@ describe Memoria::Address do
         end
 
         it 'should split into words' do
-          expect(addr.words).to eq([['R', 'Bahia'], ['55'], ['Una'], ['BR'], ['12345-678']])
+          expect(addr.words).to eq([%w(R Bahia), ['55'], ['Una'], ['BR'], ['12345-678']])
         end
       end
     end
@@ -53,5 +53,4 @@ describe Memoria::Address do
     it { expect(subject.sanitize('foo,55 -  Ubi')).to eq('foo,55-Ubi') }
     it { expect(subject.sanitize('BR - 12345- 678')).to eq('BR-12345-678') }
   end
-
 end
