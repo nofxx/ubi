@@ -5,6 +5,14 @@
                                        \___/ |_.__/ |_|
 
 
+
+[![Gem Version](https://badge.fury.io/rb/ubi.svg)](http://badge.fury.io/rb/ubi)
+[![Code Climate](https://codeclimate.com/github/nofxx/ubi.svg)](https://codeclimate.com/github/nofxx/ubi)
+[![Coverage Status](https://coveralls.io/repos/nofxx/ubi/badge.svg?branch=master)](https://coveralls.io/r/nofxx/ubi?branch=master)
+[![Dependency Status](https://gemnasium.com/nofxx/ubi.svg)](https://gemnasium.com/nofxx/ubi)
+[![Build Status](https://travis-ci.org/nofxx/ubi.svg?branch=master)](https://travis-ci.org/nofxx/ubi)
+
+
 Ubi finds information in the subject's webpage(s).
 A forager.
 
