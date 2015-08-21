@@ -24,17 +24,17 @@ module Ubi
       # Init, remove non word chars
       #
       def initialize(val, _location = :br)
-        @value = Address.sanitize(val)
-        # @zip = value.match(REGEXES[location][:zip])
-        # @region = value.match(/\W([A-Z]{2})\W/)[1]
-        # @number = value.match(/\w*\d+\w*/)
+        @chunk = Address.sanitize(val)
+        # @zip = chunk.match(REGEXES[location][:zip])
+        # @region = chunk.match(/\W([A-Z]{2})\W/)[1]
+        # @number = chunk.match(/\w*\d+\w*/)
 
-        @parts = value.split(SPLIT).map { |v| v.strip.chomp }
+        @parts = chunk.split(SPLIT).map { |v| v.strip.chomp }
         @words = parts.map { |pt| pt.split(/\s+/) }
       end
 
       def format(location = :br)
-        value.sub(*self.class.formats[location])
+        chunk.sub(*self.class.formats[location])
       end
 
       class << self
@@ -45,8 +45,8 @@ module Ubi
         # "\n" -> "-"
         # " -" -> "-"
         #
-        def sanitize(value)
-          value.gsub(/\s+/, ' ').gsub(/\\n/, '-')
+        def sanitize(v)
+          v.gsub(/\s+/, ' ').gsub(/\\n/, '-')
             .gsub(/\s?(#{DIVIDERS})\s?/, '\1')
         end
 

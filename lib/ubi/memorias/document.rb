@@ -9,16 +9,14 @@ module Ubi
     # cl: RUN/RUT
     #
     class Document < Base
-      #
-      #
-      # Init, remove non word chars
-      #
-      def initialize(value)
-        @value = value.gsub(/\W/, '')
+      attr_reader :number
+
+      def parser
+        @number = chunk.gsub(/\D/, '')
       end
 
       def format(location = :br)
-        value.sub(*self.class.formats[location])
+        number.sub(*self.class.formats[location])
       end
 
       #
@@ -27,7 +25,7 @@ module Ubi
       class << self
         def regexes
           {
-            br: /(\d{14}|\d{2}\.?\d{3}\.?\d{3}\/?\d{4}[-]?\d{2})/,
+            br: /(\d{14}|\d{2}\.?\d{3}\.?\d{3}\/?\d{4}\-?\d{2})/,
             cl: /\d{2}\.\d{3}\.\d{3}[-][0-9kK]/,
             us: /\d{3}[-]\d{2}[-]\d{4}/
           }

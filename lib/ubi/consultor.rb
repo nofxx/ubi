@@ -38,8 +38,8 @@ module Ubi
 
       class << self
         def inherited(base)
-          puts "Using aranea #{base}"
           Ubi.araneas << base
+          # puts "Using aranea #{base}"
         end
 
         #

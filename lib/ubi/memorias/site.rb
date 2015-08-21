@@ -5,7 +5,7 @@ module Ubi
       #
       # Prefix http:// if there isn't one defined
       def format
-        value =~ /http/ ? value : "http://#{value}"
+        chunk =~ /http/ ? chunk : "http://#{chunk}"
       end
 
       class << self

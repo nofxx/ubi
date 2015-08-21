@@ -4,14 +4,8 @@ module Ubi
     class Phone < Base
       attr_reader :number, :chunk
 
-      def initialize(chunk, hint = nil)
-        @hint = hint
-        @chunk = chunk
-        parse_number
-      end
-
-      def parse_number
-        @number = Phonelib.parse(chunk.gsub(/\D/, ''), @hint)
+      def parser
+        @number = Phonelib.parse(chunk.gsub(/\D/, ''), hint)
       end
 
       def to_s

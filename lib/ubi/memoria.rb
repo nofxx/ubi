@@ -3,17 +3,22 @@ module Ubi
     # Memoria Base
     class Base
       include ActiveModel::Validations
-      attr_accessor :value
+      attr_accessor :chunk, :hint, :opts
 
-      def initialize(value, aranea = nil, thema = nil)
-        @value = value
-        @aranea = aranea
-        @thema = thema
+      def initialize(chunk, hint = nil, opts = {})
+        @chunk = chunk
+        @hint = hint
+        @opts = opts
+        parser
+      end
+
+      def parser
+        # Implemented on subclasses
       end
 
       # Format for #to_s
       def format
-        value.downcase
+        chunk.downcase
       end
 
       def to_s
@@ -26,7 +31,7 @@ module Ubi
         #
         def inherited(base)
           fail "Already defined #{base.key}" if Ubi.memorias.include?(base)
-          puts "With memoria #{base}"
+          # puts "With memoria #{base}"
           Ubi.memorias << base
         end
 
@@ -34,17 +39,22 @@ module Ubi
           case datum
           when String then datum
           when Nokogiri::HTML then datum.data.text
+          # when PDF / DOC / IMG (tesseract it =) then datum.data.text
           else fail "Can't parse `#{datum.class}`"
           end
         end
 
+        #
+        # Scan for memoria regex and map to new memoria if found
+        #
+        # @returns Array [Memoria, Memoria...]
         def parse(datum)
           fail "Not implemented by #{self}" unless regex
           extract_text(datum).scan(regex).map { |r| new(r.first) }
         end
 
         #
-        # Human-readable name of the aranea
+        # Machine-readable name of this class
         #
         def key
           @key ||= to_s.split('::').last.downcase.to_sym
@@ -52,7 +62,7 @@ module Ubi
         end
 
         #
-        # Human-readable name of the aranea
+        # Human-readable name of this class
         #
         def name
           to_s.split('::').last
