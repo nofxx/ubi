@@ -5,7 +5,7 @@ module Ubi
       attr_reader :number
 
       def parser
-        @number = Phonelib.parse(value.gsub(/\D/, ''), hint)
+        @number = Phonelib.parse(text.gsub(/\D/, ''), hint)
       end
 
       def to_s

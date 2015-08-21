@@ -3,10 +3,10 @@ module Ubi
     # Memoria Base
     class Base
       include ActiveModel::Validations
-      attr_accessor :value, :hint, :opts
+      attr_accessor :text, :hint, :opts
 
-      def initialize(value, hint = nil, opts = {})
-        @value = value
+      def initialize(text, hint = nil, opts = {})
+        @text = text
         @hint = hint
         @opts = opts
         parser
@@ -18,7 +18,7 @@ module Ubi
 
       # Format for #to_s
       def format
-        value.downcase
+        text.downcase
       end
 
       def to_s

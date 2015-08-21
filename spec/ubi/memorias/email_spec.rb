@@ -7,8 +7,8 @@ describe Memoria::Email do
     it { is_expected.to include(Memoria::Email) }
     it { is_expected.to be_an Array }
 
-    it 'should have value reader method' do
-      expect(subject[0].value).to eq('me@somesite.com')
+    it 'should have text reader method' do
+      expect(subject[0].text).to eq('me@somesite.com')
     end
   end
 

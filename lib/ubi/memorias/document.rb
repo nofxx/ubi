@@ -12,7 +12,7 @@ module Ubi
       attr_reader :number
 
       def parser
-        @number = value.gsub(/\D/, '')
+        @number = text.gsub(/\D/, '')
       end
 
       def format(location = :br)

@@ -7,8 +7,8 @@ describe Memoria::Site do
     it { is_expected.to include(Memoria::Site) }
     it { is_expected.to be_an Array }
 
-    it 'should have value reader method' do
-      expect(subject[0].value).to eq('somesite.com')
+    it 'should have text reader method' do
+      expect(subject[0].text).to eq('somesite.com')
     end
   end
 
