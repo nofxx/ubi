@@ -2,10 +2,14 @@ require 'spec_helper'
 
 describe Memoria::Site do
   describe 'simple test' do
-    subject { Memoria::Site.parse('bla bla me@somesite.com') }
+    subject { Memoria::Site.parse('bla bla somesite.com') }
 
     it { is_expected.to include(Memoria::Site) }
     it { is_expected.to be_an Array }
+
+    it 'should have value reader method' do
+      expect(subject[0].value).to eq('somesite.com')
+    end
   end
 
   describe 'parsed' do

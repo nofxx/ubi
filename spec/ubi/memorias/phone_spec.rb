@@ -6,11 +6,11 @@ describe Memoria::Phone do
 
     it { is_expected.to be_a Memoria::Phone }
 
-    it 'should have chunk reader method' do
-      expect(subject.chunk).to eq('+551112345678')
+    it 'should have value reader method' do
+      expect(subject.value).to eq('+551112345678')
     end
 
-    it 'should have chunk reader method' do
+    it 'should have value reader method' do
       expect(subject.number).to be_a Phonelib::Phone
     end
   end
@@ -20,11 +20,11 @@ describe Memoria::Phone do
 
     it { is_expected.to be_a Memoria::Phone }
 
-    it 'should have chunk reader method' do
-      expect(subject.chunk).to eq('+55(11) 1234-5678')
+    it 'should have value reader method' do
+      expect(subject.value).to eq('+55(11) 1234-5678')
     end
 
-    it 'should have chunk reader method' do
+    it 'should have value reader method' do
       expect(subject.number).to be_a Phonelib::Phone
     end
   end

@@ -33,12 +33,12 @@ module Ubi
       # Init, remove non word chars
       #
       def parser
-        @clean = Address.sanitize(chunk)
-        # @zip = chunk.match(REGEXES[location][:zip])
+        @clean = Address.sanitize(value)
+        # @zip = value.match(REGEXES[location][:zip])
 
         @parts = clean.split(SPLIT).map { |v| v.strip.chomp }
         @words = parts.map { |pt| pt.split(/\s+/) }
-        @zip = chunk.scan(REGEXES[:br][:zip]).first
+        @zip = value.scan(REGEXES[:br][:zip]).first
         if zip
           @zip = zip.gsub(/\D/, '').sub(*Address.zip_format[:br])
           clean.slice!(zip)
@@ -48,7 +48,7 @@ module Ubi
       end
 
       def format(location = :br)
-        chunk.sub(*self.class.formats[location])
+        value.sub(*self.class.formats[location])
       end
 
       class << self

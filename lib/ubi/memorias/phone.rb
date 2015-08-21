@@ -2,10 +2,10 @@ module Ubi
   module Memoria
     # A Phone! mobile? landline? who is calling???
     class Phone < Base
-      attr_reader :number, :chunk
+      attr_reader :number
 
       def parser
-        @number = Phonelib.parse(chunk.gsub(/\D/, ''), hint)
+        @number = Phonelib.parse(value.gsub(/\D/, ''), hint)
       end
 
       def to_s
