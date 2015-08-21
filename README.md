@@ -32,7 +32,7 @@ A forager.
 - Social
 - Files
 - Documents
-- Address
+- Addresses
 - Logo/Images
 
 
