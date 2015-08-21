@@ -5,6 +5,28 @@ describe Memoria::Phone do
     subject { Memoria::Phone.new('+551112345678') }
 
     it { is_expected.to be_a Memoria::Phone }
+
+    it 'should have chunk reader method' do
+      expect(subject.chunk).to eq('+551112345678')
+    end
+
+    it 'should have chunk reader method' do
+      expect(subject.number).to be_a Phonelib::Phone
+    end
+  end
+
+  describe 'ill formated simple test' do
+    subject { Memoria::Phone.new('+55(11) 1234-5678') }
+
+    it { is_expected.to be_a Memoria::Phone }
+
+    it 'should have chunk reader method' do
+      expect(subject.chunk).to eq('+55(11) 1234-5678')
+    end
+
+    it 'should have chunk reader method' do
+      expect(subject.number).to be_a Phonelib::Phone
+    end
   end
 
   describe 'parsed landlines' do
@@ -57,6 +79,7 @@ describe Memoria::Phone do
   describe 'regex' do
     subject(:regex) { Memoria::Phone.regex }
     it { expect('(11) 98234.5678 547\n5475\n'.scan(regex).size).to eq(1) }
+
   end
 
   describe 'invalid' do
