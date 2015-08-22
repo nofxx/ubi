@@ -11,6 +11,6 @@ guard :rspec, cmd: 'bundle exec rspec' do
   watch(/^lib\/(.+)\.rb$/)     { |m| "spec/#{m[1]}_spec.rb" }
   watch(/^generators\/(.+)\.rb$/) { |_m| 'spec/schemaless/worker_spec' }
 
-  watch('lib/ubi.rb')     { 'spec' }
-  watch('spec/spec_helper.rb')  { 'spec' }
+  watch('lib/ubi.rb') { 'spec' }
+  watch('spec/spec_helper.rb') { 'spec' }
 end

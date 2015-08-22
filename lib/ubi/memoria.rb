@@ -16,9 +16,8 @@ module Ubi
         # Implemented on subclasses
       end
 
-      # Format for #to_s
       def format
-        text.downcase
+        text
       end
 
       def to_s
@@ -52,6 +51,14 @@ module Ubi
           fail "Not implemented by #{self}" unless defined?(:regex)
           extract_text(datum).scan(regex(hint))
             .map { |r| new(r.first, hint) }
+        end
+
+        # Scans and removes matches from original
+        #
+        def parse!(datum, hint = :br)
+          res = parse(datum, hint)
+          res.each { |m| datum.tap { |d| d.slice!(m.text) }.strip! }
+          res
         end
 
         #

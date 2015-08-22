@@ -11,7 +11,7 @@ module Ubi
     # Don't hesitate to improve your AI skills here.
     #
     class Address < Base
-      DIVIDERS = /[,\-\|\/]/
+      DIVIDERS = %r{[,\-\|/]}
       SPLIT = /(?<=\D)#{DIVIDERS}|#{DIVIDERS}(?=\D)/
       REGEXES = {
         br: {
@@ -28,23 +28,28 @@ module Ubi
 
       attr_accessor :name, :parts, :words, :zip, :place, :number,
                     :city, :region, :nation, :extra, :clean
+
+      def parse_zip
+        @zip = text.scan(REGEXES[:br][:zip]).first
+        return unless zip
+        @zip = zip.gsub(/\D/, '').sub(*Address.zip_format[:br])
+        clean.slice!(zip)
+      end
+
+      def fetch_possible
+        parse_zip
+        @region = clean.scan(/\W([A-Z]{2})\W/).first.first
+        @number = clean.scan(/\d+/).join(' ')
+      end
       #
       #
       # Init, remove non word chars
       #
       def parser
         @clean = Address.sanitize(text)
-        # @zip = text.match(REGEXES[location][:zip])
-
         @parts = clean.split(SPLIT).map { |v| v.strip.chomp }
         @words = parts.map { |pt| pt.split(/\s+/) }
-        @zip = text.scan(REGEXES[:br][:zip]).first
-        if zip
-          @zip = zip.gsub(/\D/, '').sub(*Address.zip_format[:br])
-          clean.slice!(zip)
-        end
-        @region = clean.scan(/\W([A-Z]{2})\W/).first.first
-        @number = clean.scan(/\d+/).join(' ')
+        fetch_possible
       end
 
       def format(location = :br)

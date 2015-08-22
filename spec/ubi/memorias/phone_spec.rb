@@ -79,7 +79,6 @@ describe Memoria::Phone do
   describe 'regex' do
     subject(:regex) { Memoria::Phone.regex }
     it { expect('(11) 98234.5678 547\n5475\n'.scan(regex).size).to eq(1) }
-
   end
 
   describe 'invalid' do
