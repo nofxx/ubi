@@ -31,7 +31,7 @@ describe Memoria::Phone do
 
   describe 'parsed landlines' do
     def parse(phone)
-      Memoria::Phone.parse(phone).first.rfc
+      Memoria::Phone.parse(phone).first.to_s
     end
 
     let(:parsed) { '+1112345678' }
@@ -45,10 +45,10 @@ describe Memoria::Phone do
 
   describe 'parsed mobiles txt' do
     def parse(phone)
-      Memoria::Phone.parse(phone).first.rfc
+      Memoria::Phone.parse(phone).first.to_s
     end
 
-    let(:parsed) { '+55 11 99814-5678' }
+    let(:parsed) { '+5511998145678' }
 
     load_fixture('mobile.txt').each_line do |l|
       it "Should parse phone #{l}" do
@@ -59,10 +59,10 @@ describe Memoria::Phone do
 
   describe 'parsed mobiles' do
     def parse(phone)
-      Memoria::Phone.parse(phone).first.rfc
+      Memoria::Phone.parse(phone).first.to_s
     end
 
-    let(:parsed) { '+55 11 98234-5678' }
+    let(:parsed) { '+5511982345678' }
 
     it { expect(parse('11982345678')).to eq(parsed) }
     it { expect(parse('11 982345678')).to eq(parsed) }

@@ -9,10 +9,14 @@ module Ubi
       end
 
       def format
+        number && number.e164
+      end
+
+      def national
         number && number.national
       end
 
-      def rfc
+      def international
         number && number.international
       end
 
