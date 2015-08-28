@@ -12,6 +12,24 @@ describe Memoria::Email do
     end
   end
 
+  describe 'parsed' do
+    def parse(site)
+      Memoria::Email.parse(site).first.to_s
+    end
+
+    describe 'http' do
+      let(:parsed) { 'hoho@fubah.com' }
+
+      it { expect(parse('hoho@fubah.com')).to eq(parsed) }
+      it { expect(parse('hoho@fubah.com.')).to eq(parsed) }
+      it { expect(parse('"hoho@fubah.com"')).to eq(parsed) }
+      it { expect(parse('( hoho@fubah.com )')).to eq(parsed) }
+      it { expect(parse('(hoho@fubah.com)')).to eq(parsed) }
+      it { expect(parse('(hoho@fubah.com.)')).to eq(parsed) }
+      it { expect(parse('hoho@fubah.com/')).to eq(parsed) }
+    end
+  end
+
   describe 'valid' do
     %w(
       foo@foo.com

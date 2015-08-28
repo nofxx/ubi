@@ -1,42 +1,54 @@
-require 'polipus'
+require 'retriever'
 
 module Ubi
   # Base for araneas (spiders)
   class Aranea
     OPTIONS = {
-      workers: 3,
       user_agent: "Ubi v#{Ubi::VERSION}",
-      depth_limit: 1
-
-      # storage: MemoryStore
+      depth_limit: 3,
+      logger: Logger.new(STDOUT),
+      # redis_options: {
+      #   host: 'localhost',
+      #   db: 5,
+      #   driver: 'hiredis'
+      # },
     }
-    attr_accessor :thema, :url, :datum
+    attr_accessor :thema, :url, :datum, :html, :text, :opts
 
     def initialize(thema, url, opts = {})
       @thema = thema
       @url   = url
-      @opts  = opts
+      @opts  = OPTIONS.merge(opts)
+      @datum = []
+      @html = []
+      @text = ''
     end
 
     delegate :name, to: :thema
 
     def crawl!
-      Polipus.crawler(name, url, OPTIONS.merge(@opts)) do |crawler|
-        # In-place page processing
-        crawler.on_page_downloaded do |page|
-          # A nokogiri object
-          puts "'#{page.doc.css('title').text}' (#{page.url})"
-        end
+      @last_run = Time.now
+
+      puts "Crawler start #{name} #{url}"
+      Retriever::PageIterator.new(url, opts) do |page|
+        parse page.source
+        p [page.title, page.h1, page.h2]
       end
     end
 
-    def parser(chunk)
-      Nokogiri::HTML(chunk)
+    def parse(chunk)
+      @datum << chunk
+      @html << Nokogiri::HTML(chunk)
+      @text << html.last.text
     end
 
-    def datum
-      crawl! unless @datum
-      @datum
+    def work
+      crawl! unless @last_run
+      true
     end
-  end
-end
+
+    def to_s
+      "#{thema} html: #{html.size} txt: #{text.size}"
+    end
+  end # Aranea
+end # Ubi

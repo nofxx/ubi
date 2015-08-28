@@ -24,6 +24,11 @@ module Ubi
         format
       end
 
+      def ==(other)
+        return unless other.respond_to?(:text)
+        text == other.text
+      end
+
       class << self
         #
         # Account for memorias
@@ -37,6 +42,7 @@ module Ubi
         def extract_text(datum)
           case datum
           when String then datum
+          when Ubi::Aranea then datum.text
           when Nokogiri::HTML then datum.data.text
           # when PDF / DOC / IMG (tesseract it =) then datum.data.text
           else fail "Can't parse `#{datum.class}`"
@@ -78,11 +84,6 @@ module Ubi
 
         def plural
           "#{key}s"
-        end
-
-        def ==(other)
-          return unless other.respond_to?(:key)
-          key == other.key
         end
       end
     end

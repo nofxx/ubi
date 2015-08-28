@@ -38,5 +38,4 @@ RSpec.configure do |config|
   #   # VCR.use_cassette(vcr) { example.run }
   #   puts Paint[" [#{Time.now - t}s]", :black]
   # end
-  # config.before(:each) { Polipus::SignalHandler.disable }
 end

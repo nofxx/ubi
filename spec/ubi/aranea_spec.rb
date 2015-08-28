@@ -8,7 +8,7 @@ describe Aranea do
 
   it 'should use only one url' do
     aranea = Thema.new('Rock', ['r1.com', 'r2.com']).araneas.first
-    expect(aranea.url).to eq('r1.com')
+    expect(aranea.url).to eq('http://r1.com')
   end
 
   # it 'should crawl a domain VCR ruby-lang', :vcr do

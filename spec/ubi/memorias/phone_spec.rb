@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe Memoria::Phone do
+  def parse(phone)
+    Memoria::Phone.parse(phone).first.to_s
+  end
+
   describe 'simple test' do
     subject { Memoria::Phone.new('+551112345678') }
 
@@ -29,11 +33,11 @@ describe Memoria::Phone do
     end
   end
 
-  describe 'parsed landlines' do
-    def parse(phone)
-      Memoria::Phone.parse(phone).first.to_s
-    end
+  describe 'random tests' do
+    it { expect(parse('(16) 3919-0723')).to eq('+551639190723') }
+  end
 
+  describe 'parsed landlines' do
     let(:parsed) { '+1112345678' }
 
     load_fixture('phone.txt').each_line do |l|
@@ -44,10 +48,6 @@ describe Memoria::Phone do
   end
 
   describe 'parsed mobiles txt' do
-    def parse(phone)
-      Memoria::Phone.parse(phone).first.to_s
-    end
-
     let(:parsed) { '+5511998145678' }
 
     load_fixture('mobile.txt').each_line do |l|
@@ -58,10 +58,6 @@ describe Memoria::Phone do
   end
 
   describe 'parsed mobiles' do
-    def parse(phone)
-      Memoria::Phone.parse(phone).first.to_s
-    end
-
     let(:parsed) { '+5511982345678' }
 
     it { expect(parse('11982345678')).to eq(parsed) }

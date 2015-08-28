@@ -1,3 +1,5 @@
+require 'pry'
+require 'thor'
 require 'paint'
 
 module Ubi
@@ -14,7 +16,19 @@ module Ubi
     LONG
     option :address, type: :string # 'Subject\'s address'
     def find(name)
-      Ubi::Artifex.new(name).spec
+      Ubi::Artifex.new(name: name).spec
+    end
+
+    # desc 'init', 'creates settings on ~'
+    desc 'site', 'Lookup in site'
+    long_desc <<-LONG
+
+    Find data on URL
+
+    LONG
+    option :address, type: :string # 'Subject\'s address'
+    def site(*url)
+      Ubi::Artifex.new(urls: url).spec
     end
   end
 end

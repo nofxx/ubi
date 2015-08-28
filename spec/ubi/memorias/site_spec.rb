@@ -8,7 +8,7 @@ describe Memoria::Site do
     it { is_expected.to be_an Array }
 
     it 'should have text reader method' do
-      expect(subject[0].text).to eq('somesite.com')
+      expect(subject[0].text).to eq('http://somesite.com')
     end
   end
 
@@ -21,6 +21,8 @@ describe Memoria::Site do
       let(:parsed) { 'http://fubah.com' }
 
       it { expect(parse('fubah.com')).to eq(parsed) }
+      it { expect(parse('fubah.com.')).to eq(parsed) }
+      it { expect(parse('(fubah.com.)')).to eq(parsed) }
       it { expect(parse('@fubah.com')).to eq(parsed) } # 'http://@fubah.com') }
       it { expect(parse('fu@fubah.com')).to eq(parsed) } # 'http://fu@fubah.com') }
       it { expect(parse('http://fubah.com')).to eq(parsed) }

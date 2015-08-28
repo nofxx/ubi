@@ -6,7 +6,7 @@ describe Thema do
   end
 
   it 'should accept urls too' do
-    expect(Thema.new('Hard Rock', ['hr.com']).urls).to include('hr.com')
+    expect(Thema.new('Hard Rock', ['hr.com']).urls).to include('http://hr.com')
   end
 
   it 'should convert urls to aranea' do

@@ -38,7 +38,8 @@ module Ubi
 
       def fetch_possible
         parse_zip
-        @region = clean.scan(/\W([A-Z]{2})\W/).first.first
+        @region = clean.scan(/\W([A-Z]{2})\W/).first
+        @region = @region.first if @region
         @number = clean.scan(/\d+/).join(' ')
       end
       #
@@ -53,7 +54,7 @@ module Ubi
       end
 
       def format(location = :br)
-        text.sub(*self.class.formats[location])
+        text #.sub(*self.class.formats[location])
       end
 
       class << self
@@ -85,7 +86,7 @@ module Ubi
         end
 
         def regex(hint)
-          /((?:#{REGEXES[hint][:prefix].join('|')}).*)/i
+          /(\b(?:#{REGEXES[hint][:prefix].join('|')})\s.*)\b/i
         end
 
         def plural

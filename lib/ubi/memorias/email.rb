@@ -3,6 +3,16 @@ module Ubi
     # An Electronic Mail
     class Email < Base
       #
+      # Clean up regex on init
+      #
+      def initialize(text, _hint = nil, opts = {})
+        text = text.downcase.gsub(/^\(|\.$/, '')
+        @text = text
+        # @addr = text
+        @opts = opts
+      end
+
+      #
       #
       # Class methods
       #
@@ -15,7 +25,7 @@ module Ubi
             ([a-z0-9!#$%&'*+/=?^_`{|}~-]+
             (?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@
             (?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+
-            (?:[a-z0-9-]*[a-z0-9])?)
+            (?:[a-z0-9-]*[a-z0-9])?)(?:\W|\s|$)
           }x
         end
       end

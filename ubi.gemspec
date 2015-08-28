@@ -26,9 +26,12 @@ Gem::Specification.new do |s|
   s.add_dependency 'paint'
   s.add_dependency 'phonelib'
   #  s.add_dependency 'addressie', '~> 0.0.0'
-  s.add_dependency 'polipus'
   s.add_dependency 'nokogiri'
+  s.add_dependency 'whatlanguage'
   s.add_dependency 'geopolitical'
+  s.add_dependency 'public_suffix'
+  s.add_dependency 'rubyretriever'
+  s.add_dependency 'charlock_holmes'
 
   s.add_development_dependency 'vcr'
   s.add_development_dependency 'rspec'

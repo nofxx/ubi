@@ -2,10 +2,27 @@ module Ubi
   module Memoria
     # A site, url and title?
     class Site < Base
+      attr_accessor :link, :uri
+
+      def initialize(text, _hint = nil, opts = {})
+        text = text.downcase.gsub(/^\(|\.$/, '')
+        text = "http://#{text}" unless text =~ %r{^\w{3,5}://}
+        @text = text
+        @link = tld_parser
+        @opts = opts
+      end
+
+      def tld_parser
+        @uri = URI.parse(text)
+        @link = PublicSuffix.parse(uri.host)
+      rescue PublicSuffix::DomainInvalid
+        nil
+      end
+
       #
       # Prefix http:// if there isn't one defined
       def format
-        text =~ /^http/ ? text : "http://#{text}"
+        text
       end
 
       class << self

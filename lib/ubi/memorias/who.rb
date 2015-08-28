@@ -11,7 +11,7 @@ module Ubi
           }
         end
 
-        def regex
+        def regex(url)
           %r{https?://(?:\w+\.)*(#{url}/.*)}
         end
       end
